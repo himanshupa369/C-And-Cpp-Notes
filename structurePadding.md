@@ -91,3 +91,10 @@ struct PackedStruct {
 
 ---
 
+---
+###Video Lecture
+
+*https://youtu.be/aROgtACPjjg?si=SRsYZKiHzeRryl3r
+
+---
+
