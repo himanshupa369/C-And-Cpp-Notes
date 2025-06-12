@@ -141,16 +141,17 @@ int main() {
 ### 24. ✅ What is a function pointer with extern "C" used for?
 To link with C libraries in C++:
 
----cpp
+```cpp
 Copy
 Edit
 extern "C" void myFunc();
+```
 ---
 
 ### 25. ✅ Can a function pointer point to a static member function?
 Yes! Because static member functions don't require this pointer.
 
----cpp
+```cpp
 Copy
 Edit
 class A {
@@ -164,4 +165,5 @@ int main() {
     void (*ptr)() = A::display;
     ptr();
 }
+``` 
 ---
