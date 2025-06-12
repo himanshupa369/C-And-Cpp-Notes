@@ -138,8 +138,8 @@ int main() {
 > Yes, both **non-member** and **member** function pointers can be used in classes, but member function pointers have special syntax.
 
 ---
-### 24. ✅ What is a function pointer with extern "C" used for?
-To link with C libraries in C++:
+### 14. ✅ What is a function pointer with extern "C" used for?
+> To link with C libraries in C++:
 
 ```cpp
 Copy
@@ -148,8 +148,9 @@ extern "C" void myFunc();
 ```
 ---
 
-### 25. ✅ Can a function pointer point to a static member function?
-Yes! Because static member functions don't require this pointer.
+### 15. ✅ Can a function pointer point to a static member function?
+
+> Yes! Because static member functions don't require this pointer.
 
 ```cpp
 Copy
