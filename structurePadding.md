@@ -187,5 +187,7 @@ struct SamplePacked {
 ###Video Lecture
 ---
 https://youtu.be/aROgtACPjjg?si=SRsYZKiHzeRryl3r
+
+https://youtu.be/VZBLCpQYchs?si=qKYTlEFcBoQp4bTK
 ---
 
