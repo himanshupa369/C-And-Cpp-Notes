@@ -163,3 +163,98 @@ int main() {
 | Memory location | Stack (by default) |
 
 ---
+
+
+> ✅ `std::array` is a **fixed-size sequence container** introduced in **C++11**.
+> Header file: `#include <array>`
+
+---
+
+## 🧩 Declaration Syntax:
+
+```cpp
+std::array<datatype, size> arr;
+```
+
+---
+
+## 📘 All Member Functions of `std::array`
+
+| Function      | Description                             | Example                     |
+| ------------- | --------------------------------------- | --------------------------- |
+| `at(index)`   | Safe access with bounds checking        | `arr.at(2)`                 |
+| `operator[]`  | Direct access (no bounds checking)      | `arr[2]`                    |
+| `front()`     | Returns first element                   | `arr.front()`               |
+| `back()`      | Returns last element                    | `arr.back()`                |
+| `data()`      | Returns pointer to the underlying array | `int* p = arr.data();`      |
+| `begin()`     | Returns iterator to beginning           | `auto it = arr.begin();`    |
+| `end()`       | Returns iterator to end                 | `auto it = arr.end();`      |
+| `cbegin()`    | Const iterator to beginning             | `auto it = arr.cbegin();`   |
+| `cend()`      | Const iterator to end                   | `auto it = arr.cend();`     |
+| `rbegin()`    | Reverse iterator to end                 | `auto rit = arr.rbegin();`  |
+| `rend()`      | Reverse iterator to beginning           | `auto rit = arr.rend();`    |
+| `crbegin()`   | Const reverse iterator to end           | `auto rit = arr.crbegin();` |
+| `crend()`     | Const reverse iterator to beginning     | `auto rit = arr.crend();`   |
+| `empty()`     | Checks if array is empty (always false) | `arr.empty()`               |
+| `size()`      | Returns size of array                   | `arr.size()`                |
+| `max_size()`  | Returns max size (same as `size()`)     | `arr.max_size()`            |
+| `fill(value)` | Fills array with given value            | `arr.fill(0);`              |
+| `swap(other)` | Swaps with another array                | `arr1.swap(arr2);`          |
+
+---
+
+## 🧪 Example Code (Using All Major Functions)
+
+```cpp
+#include <iostream>
+#include <array>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    array<int, 5> arr = {5, 2, 3, 1, 4};
+
+    cout << "Front: " << arr.front() << endl;
+    cout << "Back: " << arr.back() << endl;
+    cout << "At(2): " << arr.at(2) << endl;
+    cout << "Raw pointer: " << *(arr.data()) << endl;
+
+    arr.fill(9);
+    for (auto x : arr) cout << x << " ";  // 9 9 9 9 9
+
+    array<int, 5> other = {1, 2, 3, 4, 5};
+    arr.swap(other);
+
+    cout << "\nAfter swap: ";
+    for (auto it = arr.begin(); it != arr.end(); ++it)
+        cout << *it << " ";  // 1 2 3 4 5
+
+    return 0;
+}
+```
+
+---
+
+## 📌 STL Compatibility
+
+Because `std::array` supports iterators, it works with STL algorithms:
+
+```cpp
+std::sort(arr.begin(), arr.end());
+std::reverse(arr.begin(), arr.end());
+std::accumulate(arr.begin(), arr.end(), 0);
+```
+
+---
+
+## ✅ Summary Table
+
+| Category  | Functions                                                               |
+| --------- | ----------------------------------------------------------------------- |
+| Access    | `at()`, `operator[]`, `front()`, `back()`, `data()`                     |
+| Iteration | `begin()`, `end()`, `cbegin()`, `cend()`, `rbegin()`, `rend()`, `cr*()` |
+| Capacity  | `size()`, `max_size()`, `empty()`                                       |
+| Modifiers | `fill()`, `swap()`                                                      |
+
+---
+
