@@ -177,4 +177,144 @@ Without `weak_ptr`, this would cause a **memory leak** due to mutual `shared_ptr
 * It must be **checked or locked** before use.
 
 ---
+---
+
+### ✅ **1. Can we use `use_count()` with `weak_ptr`?**
+
+**Yes**, you can use `use_count()` with `weak_ptr`.
+
+🔹 It returns the **number of `shared_ptr` instances** managing the object (excluding the `weak_ptr` itself).
+
+```cpp
+#include <iostream>
+#include <memory>
+int main() {
+    std::shared_ptr<int> sp = std::make_shared<int>(42);
+    std::weak_ptr<int> wp = sp;
+
+    std::cout << "Use count: " << wp.use_count() << "\n"; // Output: 1
+}
+```
+
+---
+
+### ✅ **2. Does `weak_ptr` increase the `use_count()` of `shared_ptr`?**
+
+**No**, `weak_ptr` **does not** increase the reference count of `shared_ptr`.
+
+* A `shared_ptr` increases ownership.
+* A `weak_ptr` **observes** the object without owning it.
+
+```cpp
+std::shared_ptr<int> sp = std::make_shared<int>(100);
+std::weak_ptr<int> wp = sp;
+
+std::cout << sp.use_count() << "\n"; // 1
+```
+
+Even after creating `wp`, the count remains `1`.
+
+---
+
+### ✅ **3. What happens when we call `lock()` on a `weak_ptr`?**
+
+`lock()` attempts to **promote** the `weak_ptr` to a `shared_ptr`:
+
+* If the object still exists → returns a valid `shared_ptr`
+* If the object was destroyed → returns a **null `shared_ptr`**
+
+🔹 Example:
+
+```cpp
+std::shared_ptr<int> sp = std::make_shared<int>(10);
+std::weak_ptr<int> wp = sp;
+
+if (auto temp = wp.lock()) {
+    std::cout << "Value: " << *temp << "\n";
+} else {
+    std::cout << "Object no longer exists\n";
+}
+```
+
+If `sp` is reset or destroyed before `lock()`, the returned `shared_ptr` will be empty.
+
+---
+
+### 🔍 Summary Table:
+
+| Question                                   | Answer                                  |
+| ------------------------------------------ | --------------------------------------- |
+| Can `use_count()` be called on `weak_ptr`? | ✅ Yes                                   |
+| Does `weak_ptr` increase `use_count()`?    | ❌ No                                    |
+| What happens on `lock()`?                  | Returns valid `shared_ptr` or `nullptr` |
+
+---
+### ✅ `.expired()` in C++ (for `std::weak_ptr`)
+
+---
+
+### 🔹 **What is `.expired()`?**
+
+`.expired()` is a member function of `std::weak_ptr` that checks whether the managed object has been **destroyed**.
+
+---
+
+### 🔸 **Syntax:**
+
+```cpp
+bool expired() const noexcept;
+```
+
+* Returns `true` if the `shared_ptr` managing the object has been **destroyed**.
+* Returns `false` if the object is still **alive** (i.e., the resource is still owned by at least one `shared_ptr`).
+
+---
+
+### 🔹 **Use Case Example:**
+
+```cpp
+#include <iostream>
+#include <memory>
+
+int main() {
+    std::weak_ptr<int> wp;
+
+    {
+        std::shared_ptr<int> sp = std::make_shared<int>(42);
+        wp = sp;
+
+        std::cout << "Expired? " << std::boolalpha << wp.expired() << "\n";  // false
+    }
+
+    // Now sp is out of scope, object is destroyed
+    std::cout << "Expired? " << std::boolalpha << wp.expired() << "\n";      // true
+}
+```
+
+---
+
+### 🔹 **When should you use `.expired()`?**
+
+* Before calling `lock()` to check if the object is still valid.
+* To avoid accessing a destroyed object.
+
+```cpp
+if (!wp.expired()) {
+    auto sp = wp.lock();  // safe to use
+    std::cout << *sp << "\n";
+}
+```
+
+---
+
+### 🔍 Summary:
+
+| Method         | Purpose                             |
+| -------------- | ----------------------------------- |
+| `.expired()`   | Checks if object is destroyed       |
+| `.lock()`      | Attempts to promote to `shared_ptr` |
+| `.use_count()` | Number of `shared_ptr` owners       |
+
+---
+
 
