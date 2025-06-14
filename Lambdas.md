@@ -218,3 +218,158 @@ v.erase(std::remove_if(v.begin(), v.end(), [](int x) { return x % 2 != 0; }), v.
 
 ---
 
+---
+
+## ✅ **Lambda Functions in C++ – Pitfalls & Interview Questions**
+
+---
+
+### 🔹 **1. What are common pitfalls of using lambda functions in C++?**
+
+**Answer:**
+
+Some common pitfalls include:
+
+* **Incorrect capture mode** (capturing by value when reference is needed or vice versa).
+* **Dangling reference** from captured variables.
+* **Overusing mutable**, leading to bugs.
+* **Undefined behavior** if capturing moved/destroyed objects.
+* **Performance issues** if large objects are captured by value.
+* **Misuse in multithreaded contexts** (data races).
+* **Incompatibility with older compilers** (e.g., no generic lambdas in C++11).
+
+---
+
+### 🔹 **2. Can you explain a bug caused by capturing by value instead of reference?**
+
+**Answer:**
+
+```cpp
+int x = 10;
+auto f = [x]() { return x + 1; };
+x = 20;
+std::cout << f();  // Output: 11, not 21
+```
+
+Here, `x` was captured **by value**, so changes to the original `x` are **not reflected**.
+
+---
+
+### 🔹 **3. What happens if you capture a local variable by reference, but the lambda outlives it?**
+
+**Answer:** **Dangling reference**, causing **undefined behavior**.
+
+```cpp
+auto getLambda() {
+    int x = 10;
+    return [&]() { return x; }; // x will be destroyed!
+}
+```
+
+Using the returned lambda is **dangerous** — it refers to a destroyed variable.
+
+---
+
+### 🔹 **4. Why can capturing `this` be risky inside lambdas?**
+
+**Answer:**
+If the object is deleted or moved before the lambda executes, then using `[this]` can lead to **dangling pointer access**.
+
+✅ Safer option in modern C++ (C++20+): use `[=, *this]` to **capture a copy** of `this`.
+
+---
+
+### 🔹 **5. What is the danger of using `mutable` in lambda functions?**
+
+**Answer:**
+Using `mutable` allows modifying captured-by-value variables, which may confuse developers:
+
+```cpp
+int a = 10;
+auto f = [a]() mutable { a++; };
+f();
+std::cout << a;  // Still prints 10!
+```
+
+✅ Modification affects only the **captured copy**, not the original.
+
+---
+
+### 🔹 **6. Is capturing by default `[=]` or `[&]` safe?**
+
+**Answer:**
+No. Default captures can be **unsafe or unclear**:
+
+* `[=]`: silently copies everything (may be costly).
+* `[&]`: risks **dangling references** or **unintended modification**.
+
+🔺 **Best practice**: use explicit capture `[x, &y]` for clarity and safety.
+
+---
+
+### 🔹 **7. Can capturing large objects by value cause performance issues?**
+
+**Answer:**
+Yes. Capturing large containers (e.g., `std::vector`) by value causes **deep copies**, which can be expensive.
+
+🔁 Use reference capture `[&vec]` or smart pointers where appropriate.
+
+---
+
+### 🔹 **8. What problems can occur in multithreaded code with lambdas?**
+
+**Answer:**
+Lambdas can **capture shared variables**, and if multiple threads modify them without synchronization, it causes **data races**.
+
+🔒 Use `std::mutex`, `std::atomic`, or avoid shared capture entirely.
+
+---
+
+### 🔹 **9. Can you use lambda in a loop safely? What should be avoided?**
+
+**Answer:**
+
+Loop variable capture may cause **unexpected values**:
+
+```cpp
+std::vector<std::function<void()>> fs;
+for (int i = 0; i < 3; ++i) {
+    fs.push_back([&]() { std::cout << i << " "; });
+}
+for (auto& f : fs) f();  // Outputs: 3 3 3
+```
+
+✅ Fix: capture by value `[i]`.
+
+---
+
+### 🔹 **10. What happens if you capture a moved-from object in a lambda?**
+
+**Answer:**
+Capturing a **moved-from** object by value results in an invalid or empty object inside the lambda.
+
+```cpp
+std::string s = "hello";
+auto f = [s = std::move(s)]() { std::cout << s; };
+std::cout << s;  // undefined or empty
+f();             // prints "hello"
+```
+
+✅ Safe but must be **intentionally** handled.
+
+---
+
+## ⚠️ Summary of Lambda Pitfalls
+
+| Pitfall                       | Description                           |
+| ----------------------------- | ------------------------------------- |
+| Capturing wrong variable type | Value vs reference confusion          |
+| Lifetime issues               | Dangling reference from local capture |
+| Overhead                      | Copying large objects by value        |
+| Mutable misuse                | Confusing behavior for copied values  |
+| Thread safety                 | Unsafe shared access                  |
+| Loop variable capture         | Wrong values due to late binding      |
+
+---
+
+
