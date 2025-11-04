@@ -21,3 +21,11 @@ int main(){
    
     return 0;
 }
+
+/*
+Answer:- 
+✅ Final Takeaway:
+Whenever you perform arithmetic on char or short, C++ promotes them to int before doing the calculation — that’s why
+result1 and result2 are 4 bytes (the typical size of an int).
+due to the C++ integral promotion rules come into play.
+*/
