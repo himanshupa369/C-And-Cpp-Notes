@@ -68,10 +68,10 @@ They are often used in **low-level programming**, **embedded systems**, **optimi
 int main() {
     unsigned short int data {20};
 
-    std::cout << "data (dec) : " << std::dec << data << std::endl;
-    std::cout << "data (hex) : " << std::hex << data << std::endl;
-    std::cout << "data (oct) : " << std::oct << data << std::endl;
-    std::cout << "data (binary) : " << std::bitset<20>(data) << std::endl;
+    std::cout << "data (dec) : " <<std::showbase <<  std::dec << data << std::endl;
+    std::cout << "data (oct) : " <<std::showbase <<  std::oct << data << std::endl;
+    std::cout << "data (hex) : " <<std::showbase <<  std::hex << data << std::endl;
+    std::cout << "data (bin) : " << std::bitset<16>(data) << std::endl;
 
     return 0;
 }
@@ -81,9 +81,9 @@ int main() {
 
 ```
 data (dec) : 20
-data (hex) : 14
-data (oct) : 24
-data (binary) : 00000000000000010100
+data (oct) : 024
+data (hex) : 0x14
+data (bin) : 0000000000010100
 ```
 
 ✅ Here, the number `20` is represented as binary `00000000000000010100` (20 bits).
