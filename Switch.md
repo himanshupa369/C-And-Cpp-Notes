@@ -108,3 +108,71 @@ Output: `A B`
 Explanation: `case 1` matches, but no `break`, so it falls into `case 2`.
 
 ---
+
+
+---
+
+## 🧩 **Grouping Multiple Cases**
+
+You can **combine multiple cases** that should execute the same code.
+
+### Example:
+
+```cpp
+switch (tool) {
+    case rectangle:
+    case circle:
+    case ellipse:
+        cout << "Drawing shape" << endl;
+        break;
+
+    default:
+        cout << "Not a shape tool" << endl;
+        break;
+}
+```
+
+✅ **Output (if tool = circle):**
+
+```
+Drawing shape
+```
+
+🧠 *This is useful when multiple case values share the same behavior.*
+
+---
+
+## ⚠️ **Important Rules & Limitations**
+
+| Rule                          | Explanation                                                                                                     |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| **1. Expression Type**        | Must be an integral or enum type (`int`, `char`, `long`, etc.). Not allowed for `string`, `float`, or `double`. |
+| **2. Unique Case Labels**     | Each `case` constant must be unique within the same switch block.                                               |
+| **3. Compile-Time Constants** | Case labels must be compile-time constants (like `const int` or `enum`).                                        |
+| **4. Scope**                  | Labels (`case`, `default`) are local to the switch statement.                                                   |
+| **5. Fall-through**           | Occurs if `break` is omitted — all subsequent cases execute.                                                    |
+| **6. Default Case**           | Optional but recommended for handling unexpected values.                                                        |
+
+---
+
+
+---
+
+## 🔎 **Key Takeaways**
+
+| Concept             | Summary                                              |
+| ------------------- | ---------------------------------------------------- |
+| **Purpose**         | Simplify multiple condition checks for one variable. |
+| **Break Statement** | Prevents fall-through into next cases.               |
+| **Default**         | Executes when no case matches (optional).            |
+| **Expression Type** | Must be integral or enum (not string or float).      |
+| **Grouping**        | Multiple cases can share one code block.             |
+| **Fall-through**    | If break is missing, all following cases execute.    |
+
+---
+
+
+---
+
+
+
