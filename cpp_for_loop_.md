@@ -477,3 +477,196 @@ Loop done!
 > Mastering this structure gives you the foundation for **all kinds of iteration logic** — from simple counting to complex data traversal.
 
 ---
+
+
+Perfect — here’s a **clear, formatted explanation and notes** based on that lecture, including the example code, type rules, and concept summary.
+
+---
+
+# 🧠 **C++ For Loops — Multiple Declarations**
+
+---
+
+## 🧩 **Concept Overview**
+
+In a C++ `for` loop, you can **declare and use multiple variables** in both the **initializer** and **increment/decrement** sections of the loop.
+
+This helps you **track multiple related values** as the loop executes — for example, when one variable increases while another decreases.
+
+---
+
+## 🧱 **Structure of a For Loop**
+
+A `for` loop has **three parts**, separated by semicolons `;`:
+
+```
+for (initialization ; condition ; increment/decrement)
+```
+
+### Example:
+
+```cpp
+for (size_t i{0}, x{5}, y{22}; y > 15; ++i, x += 5, y -= 1)
+{
+    std::cout << "i: " << i
+              << ", x: " << x
+              << ", y: " << y << std::endl;
+}
+```
+
+---
+
+## ⚙️ **How This Works**
+
+Let’s break down this example:
+
+### 🔹 Initialization Part
+
+```cpp
+size_t i{0}, x{5}, y{22};
+```
+
+* Declares **three variables** of the same type (`size_t`).
+* You can initialize **multiple variables** here, separated by commas.
+
+### 🔹 Condition Part
+
+```cpp
+y > 15
+```
+
+* Controls **when the loop stops**.
+* Here, `y` is chosen as the **controller variable**.
+
+### 🔹 Increment/Decrement Part
+
+```cpp
+++i, x += 5, y -= 1
+```
+
+* Uses the **comma operator** to execute multiple update expressions per iteration.
+
+### 🔹 Loop Body
+
+```cpp
+std::cout << "i: " << i << ", x: " << x << ", y: " << y << std::endl;
+```
+
+* Executes for each iteration until the **condition fails** (`y > 15` becomes false).
+
+---
+
+## 🔍 **Output Walkthrough**
+
+### Code:
+
+```cpp
+for (size_t i{0}, x{5}, y{22}; y > 15; ++i, x += 5, y -= 1) {
+    std::cout << "i: " << i << ", x : " << x << ", y : " << y << std::endl;
+}
+```
+
+### Output:
+
+```
+i: 0, x: 5, y: 22
+i: 1, x: 10, y: 21
+i: 2, x: 15, y: 20
+i: 3, x: 20, y: 19
+i: 4, x: 25, y: 18
+i: 5, x: 30, y: 17
+i: 6, x: 35, y: 16
+```
+
+When `y` becomes `15`, the loop condition `y > 15` fails, and the loop stops.
+
+---
+
+## 🧾 **Key Notes**
+
+### ✅ Multiple Declarations
+
+* You can declare **multiple variables** in the initialization section.
+* All variables **must be of the same type**.
+
+  ```cpp
+  for (size_t i{0}, j{5}; j > 0; --j, ++i)
+  ```
+* ❌ You **cannot mix types**:
+
+  ```cpp
+  for (int i{0}, size_t j{5}; j > 0; --j, ++i) // ❌ Invalid
+  ```
+
+### ✅ Multiple Updates
+
+* You can also perform **multiple updates** in the increment section.
+
+  ```cpp
+  for (int a{0}, b{10}; b > a; ++a, --b)
+  ```
+
+### ✅ Choose One Controller
+
+* Out of all declared variables, you must decide **which one controls the loop condition**.
+  Example: `y > 15` → `y` is the controlling variable.
+
+---
+
+## 🧮 **Checking the Type**
+
+All variables declared in:
+
+```cpp
+for (size_t i{0}, x{5}, y{22}; ...)
+```
+
+are of type `size_t`.
+
+### Example:
+
+```cpp
+std::cout << sizeof(i) << ", "
+          << sizeof(x) << ", "
+          << sizeof(y) << std::endl;
+```
+
+### Output (on 64-bit system):
+
+```
+8, 8, 8
+```
+
+---
+
+## 🚫 **Common Mistake**
+
+You **cannot** declare variables of different types in the same initialization list:
+
+```cpp
+for (size_t i{0}, x{5}; int y{10}; y > 5; ++i, ++y) // ❌ Invalid
+```
+
+> All declared variables must share the same type as the **first declaration**.
+
+---
+
+## ⚡ **Behind the Scenes — The Comma Operator**
+
+The **comma (`,`)** used in the initialization and increment sections isn’t just a separator —
+it’s actually a **comma operator** in C++.
+
+### Meaning:
+
+The **comma operator** evaluates expressions **from left to right**, and the **final value** is the result of the **last expression**.
+
+Example:
+
+```cpp
+a = (b = 3, b + 2); // assigns 5 to a
+```
+
+You’ll learn more about this in the next lecture.
+
+---
+
