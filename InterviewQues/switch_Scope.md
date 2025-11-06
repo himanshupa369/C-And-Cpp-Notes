@@ -253,3 +253,109 @@ switch (cond) {
 | Safer approach      | Declare shared vars outside switch     |
 
 ---
+
+---
+
+## 🧭 Switch Statement — Scope Analysis in C++
+
+### ⚙️ **Scope Overview**
+
+A `switch` block in C++ is **one giant scope**.
+All variables declared inside it are visible across *all cases* — but only **after their point of declaration**.
+
+---
+
+### ⚠️ **Warning**
+
+* You **cannot refer to a variable** before the `case` in which it is declared.
+
+  ```cpp
+  switch (n) {
+      case 0:
+          z = 5; // ❌ Error: z not declared yet
+          break;
+      case 1:
+          int z;
+          break;
+  }
+  ```
+
+---
+
+### 💡 **Recommendation**
+
+> While the compiler allows all the weird things we just experienced,
+> **do not declare variables inside the switch block.**
+>
+> ✅ Instead, declare them outside the switch (or use an initializer in the switch header) so that their visibility and lifetime are predictable and clean.
+
+Example (Recommended):
+
+```cpp
+int value{5};
+
+switch (int condition{1}; condition) {
+    case 0: {
+        value++;
+        std::cout << "Value: " << value << '\n';
+        break;
+    }
+    case 1: {
+        value += 2;
+        std::cout << "Value: " << value << '\n';
+        break;
+    }
+    default: {
+        std::cout << "Default case\n";
+        break;
+    }
+}
+```
+
+---
+
+### 🧩 **Switch Scope Layout**
+
+Below is a conceptual view of variable visibility and case structure:
+
+```
+switch (condition) {
+    ┌────────────────────────────────────┐
+    │   Variable Declaration Area        │   ← all declared variables live here
+    └────────────────────────────────────┘
+         │
+         ▼
+     case 0:
+         // statements
+         break;
+     case 1:
+         // statements
+         break;
+     default:
+         // statements
+         break;
+}
+```
+
+📘 **Flow:**
+
+* Case execution proceeds **from top to bottom** once a matching case is found.
+* Control exits the switch when a `break` is hit (or falls through otherwise).
+* Variables declared before any case are visible in all cases.
+* Each `case` can optionally be wrapped in `{}` to create a nested scope.
+
+---
+
+### 🧠 **Key Takeaways**
+
+| Concept                  | Description                                                 |
+| ------------------------ | ----------------------------------------------------------- |
+| **Scope**                | All cases share the same scope.                             |
+| **Variable Declaration** | Moved by compiler before any case (conceptually).           |
+| **Initialization**       | Disallowed in switch block (outside cases).                 |
+| **Best Practice**        | Declare or initialize variables outside the switch.         |
+| **Curly Braces**         | Use `{}` in cases to limit scope and avoid name collisions. |
+
+---
+
+
