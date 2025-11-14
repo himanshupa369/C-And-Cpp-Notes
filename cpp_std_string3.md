@@ -548,3 +548,259 @@ int main(){
 }
 
 ```
+---
+
+# ⭐ **1. `std::to_string()` in C++**
+
+### ✔ Purpose
+
+Converts **numbers → string**.
+
+### ✔ Defined in
+
+```cpp
+#include <string>
+```
+
+### ✔ Syntax
+
+```cpp
+std::string std::to_string(value);
+```
+
+### ✔ Supported types
+
+* `int`
+* `long`, `long long`
+* `unsigned` versions of above
+* `float`
+* `double`
+* `long double`
+
+### 📌 Example 1: Integer → String
+
+```cpp
+int num = 123;
+std::string s = std::to_string(num);
+
+std::cout << s;       // "123"
+```
+
+### 📌 Example 2: Double → String
+
+```cpp
+double pi = 3.14159;
+std::string s = std::to_string(pi);
+
+std::cout << s;       // "3.141590"
+```
+
+### ✔ Note
+
+Floating numbers may include **extra trailing zeros**.
+
+---
+
+# ⭐ **2. `std::stoi()` in C++**
+
+### ✔ Purpose
+
+Converts **string → integer**.
+
+### ✔ Defined in
+
+```cpp
+#include <string>
+```
+
+### ✔ Syntax
+
+```cpp
+int stoi(const std::string& str, size_t* idx = 0, int base = 10);
+```
+
+### ✔ Parameters
+
+| Parameter | Meaning                                                       |
+| --------- | ------------------------------------------------------------- |
+| `str`     | Input string                                                  |
+| `idx`     | Optional pointer—stores **index of first non-converted char** |
+| `base`    | Number base (2–36), default = 10                              |
+
+---
+
+# 📌 Example 1: Simple string → integer
+
+```cpp
+std::string s = "123";
+int n = std::stoi(s);
+
+std::cout << n;       // 123
+```
+
+---
+
+# 📌 Example 2: stoi stops at first non-digit
+
+```cpp
+std::string s = "123abc";
+size_t index;
+
+int n = std::stoi(s, &index);
+
+std::cout << n << std::endl;      // 123
+std::cout << index << std::endl;  // 3  (position after '3')
+```
+
+---
+
+# 📌 Example 3: stoi with base
+
+```cpp
+std::string s = "FF";
+int n = std::stoi(s, nullptr, 16);  // base 16 (hex)
+
+std::cout << n;    // 255
+```
+
+---
+
+# ⭐ **3. Exceptions thrown by `stoi()`**
+
+| Exception               | When?                                   |
+| ----------------------- | --------------------------------------- |
+| `std::invalid_argument` | No valid number in string (e.g., "abc") |
+| `std::out_of_range`     | Number exceeds int limits               |
+
+### Example:
+
+```cpp
+try {
+    int x = std::stoi("abc");
+} 
+catch(const std::exception& e) {
+    std::cout << "Error: " << e.what();
+}
+```
+
+---
+
+# ⭐ **4. Full Program Demonstration**
+
+```cpp
+#include <iostream>
+#include <string>
+
+int main() {
+    // to_string
+    int num = 42;
+    std::string s1 = std::to_string(num);
+    std::cout << "to_string: " << s1 << std::endl;
+
+    // stoi
+    std::string s2 = "987xyz";
+    size_t idx;
+    int n = std::stoi(s2, &idx);
+    std::cout << "stoi: " << n << std::endl;
+    std::cout << "Stopped at index: " << idx << std::endl;
+
+    return 0;
+}
+```
+
+---
+
+# 🎯 **Final Summary**
+
+| Function           | Converts        | Header     | Notes                                    |
+| ------------------ | --------------- | ---------- | ---------------------------------------- |
+| `std::to_string()` | Number → string | `<string>` | Works with int, float, double            |
+| `std::stoi()`      | String → int    | `<string>` | Stops at non-digit, may throw exceptions |
+
+---
+
+```cpp
+#include <iostream>
+#include <string>
+
+
+int main(){
+
+	//Number to String : the std::to_string function.
+    /*
+    float float_var {22.3f};
+    double double_var {1.34847e5};
+    int int_var {223};
+    
+    std::string float_str {std::to_string(float_var)};;
+    std::string double_str{std::to_string(double_var)};;
+    std::string int_str{std::to_string(int_var)};
+    
+    std::cout << "size of float_str : " << float_str.size()<< std::endl;
+    std::cout << "float_var : " << float_var << std::endl;
+	std::cout << "float_str : " << float_str<< std::endl;
+	
+    std::cout << "double_var : " << double_var << std::endl;
+	std::cout <<"double_str : " << double_str<< std::endl;
+	
+    std::cout << "int_var : " << int_var << std::endl;
+	std::cout << "int_str : " << int_str<< std::endl;
+
+    */
+
+   //std::string to number (integral types)
+	//int, long , long long
+	//std::stoi, std::stol, std::stoll
+    /*
+	std::string number_str{"34.567"};//Could even be negative
+
+	int int_var = std::stoi(number_str);
+	std::cout << "int_var : " << int_var << std::endl;
+	std::cout << "sizeof(int_var) : " << sizeof(int_var) << std::endl;
+	
+	long long_var = std::stol(number_str);
+	std::cout << "long_var : " << long_var << std::endl;
+	std::cout << "sizeof(long_var) : " << sizeof(long_var) << std::endl;
+	
+	long long long_long_var = std::stoll(number_str);
+	std::cout << "long_long_var : " << long_long_var << std::endl;
+	std::cout << "sizeof(long_long_var) : " << sizeof(long_long_var) << std::endl;
+    */
+
+	//unsigned long , unsigned long long
+	//std::stoul, std::stoull
+	//Underflows when the std::string contains a negative number
+	/*
+	std::string number_str = "34.567";
+	//std::string number_str = "-34.567"; // Resulting unsigned long and long long underflow
+							// and become huge numbers of their type
+	std::cout << std::endl;
+	std::cout << "unsigned long, unsigned long long : " << std::endl;
+	
+	unsigned long u_l_var = std::stoul(number_str);
+	std::cout << "u_l_var : " << u_l_var << std::endl;
+	std::cout << "sizeof(u_l_var) : " << sizeof(u_l_var) << std::endl;
+	
+	unsigned long long u_ll_var = std::stoull(number_str);
+	std::cout << "u_ll_var : " << u_ll_var << std::endl;
+	std::cout << "sizeof(u_ll_var) : " << sizeof(u_ll_var) << std::endl;
+    */
+
+	//float, double,long double : 
+	//std::stof, std::stod, std::stold
+    std::string number_str = "34.567";
+
+	float float_var = std::stof(number_str);
+	std::cout << "float_var : " << float_var << std::endl;
+	std::cout << "sizeof(float_var) : " << sizeof(float_var) << std::endl;
+	
+	double double_var = std::stod(number_str);
+	std::cout << "double_var : " << double_var << std::endl;
+	std::cout << "sizeof(double_var) : " << sizeof(double_var) << std::endl;
+	
+	long double long_double_var = std::stold(number_str);
+	std::cout << "long_double_var : " << long_double_var << std::endl;
+	std::cout << "sizeof(long_double_var) : " << sizeof(long_double_var) << std::endl;
+    return 0;
+}
+```
