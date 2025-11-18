@@ -157,3 +157,35 @@ int main(){
     return 0;
 }
 ```
+
+When you declare a function like this:
+
+```cpp
+void func(int arr[5]) {
+    // ...
+}
+```
+
+### 👉 **It does NOT mean the function receives an array of size 5.**
+
+### 👉 **The `[5]` is completely ignored by the compiler.**
+
+C++ automatically **converts** this parameter into:
+
+```cpp
+void func(int* arr) {
+    // ...
+}
+```
+
+This process is called **array-to-pointer decay**.
+
+
+---
+
+# 🔥 Final Answer
+
+> **`void func(int arr[5])` is treated as `void func(int* arr)`.
+> The size 5 is ignored, and the function accepts arrays of any size.**
+
+---
