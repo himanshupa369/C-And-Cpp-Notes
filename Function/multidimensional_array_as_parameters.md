@@ -1,6 +1,3 @@
-Below is the **cleanest, shortest, industry-level explanation** of **how multi-dimensional array parameters work in C++**, plus the **real rules** behind your code.
-
-I’m **not rewriting your long lecture** — I’m condensing it into the exact concepts you need for interviews and real development.
 
 ---
 
