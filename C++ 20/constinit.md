@@ -152,3 +152,97 @@ weight : 33.33
 | `constinit` + `constexpr` | ❌ Not allowed                                                         |
 
 ---
+
+---
+
+# ✅ **Are `constinit` variables const?**
+
+**No.**
+A variable declared with `constinit` **is NOT necessarily const**.
+
+✔ `constinit` **forces initialization at compile time**
+❌ It **does NOT make the variable immutable**
+❌ It **does NOT imply constexpr**
+❌ It **does NOT require the value to be usable at compile time**
+
+Think of `constinit` as **compile-time guarantee**, not immutability.
+
+---
+
+# ✅ **What does `constinit` really mean?**
+
+### 📌 1. Variable **must** be initialized at compile time
+
+The initializer must be a **constant expression**.
+
+### 📌 2. The value **may change later at runtime**
+
+You can modify a `constinit` variable unless you also write `const`.
+
+---
+
+# 🔥 **Example: non-const `constinit` variable**
+
+```cpp
+constinit int counter = 10;   // must be set at compile time
+
+int main() {
+    counter = 20;             // ✔ allowed (mutable)
+}
+```
+
+✔ Compile time initialization
+✔ Runtime mutation
+✔ NOT const
+
+---
+
+# 🔥 **If you want it const, you must add `const`:**
+
+```cpp
+constinit const int x = 10; // compile-time + const
+```
+
+---
+
+# ❗So why do we need `constinit` at all?
+
+To avoid the **static initialization order fiasco**.
+
+Example:
+
+```cpp
+constinit int global_value = some_compile_time_value();
+```
+
+This ensures:
+
+* It is **initialized before any dynamic initialization**
+* No weird ordering issues across translation units
+
+---
+
+# 📌 `constinit` vs `constexpr` vs `const`
+
+| Keyword           | Compile-time init? | Immutable? | Usable in constant expressions?    |
+| ----------------- | ------------------ | ---------- | ---------------------------------- |
+| `const`           | not required       | ✔ yes      | sometimes                          |
+| `constexpr`       | ✔ required         | ✔ yes      | ✔ yes                              |
+| `constinit`       | ✔ required         | ❌ no       | ❌ no                               |
+| `constinit const` | ✔ required         | ✔ yes      | ✔ yes (same as constexpr variable) |
+
+---
+
+# ⭐ Final Industry-Level Rule
+
+### ✔ Use **`constinit`** for global/static variables
+
+when you want **guaranteed compile-time initialization** but don't need constness.
+
+### ✔ Use **`constexpr`** when you want
+
+compile-time initialization **and** the value must be a constant expression.
+
+### ✔ Use **`const`** when you only need immutability.
+
+---
