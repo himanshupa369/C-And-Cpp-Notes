@@ -218,4 +218,5 @@ int main() {
     return 0;
 }
 
+//Final outcomes that non const reference can not bind with temporary value but const reference can bind with temp value but we can not modify it .
 ```
