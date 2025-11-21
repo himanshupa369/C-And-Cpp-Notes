@@ -1,0 +1,334 @@
+
+const int*, int* const, const int* const what is difference?
+
+Difference between malloc(..), calloc(..) and  exit(), _exit()
+
+Explain any design pattern (not singleton) which i have used in my project and why?
+
+Design with SOLID - A class has a method ProcessFile that will process dependending on the formatType. The formate types are jpg, png and gif
+
+Count the characters in sequence AAABBBCCCAAADDDCCBB Output should be A3B3C3A3D3C2B2 !! Notice that all the characters are repeated
+
+Input string : "2($0)1(***)5(@)" Output format : $0$0***@@@@@ in C#
+
+	
+C++	
+	memory management(stack,heap,code,data)
+	swap memory when does swap starts
+	Difference between structure and union
+	Static member function
+	STL: list and vector
+	
+	
+	
+Linux:	
+	IPC mechanisam Process and Thread synchronization machanisam
+	mutex,semaphore
+	Types of Schedulars wait() fork()- function call
+	zombie process(how to avoid)
+	Orphan process linux commands
+	
+	
+Code:	
+	Bit manipulation
+	singly-linked list
+	Reverse link code Recursive function
+	palindrom code
+	Reverse String code
+	"You are given an array which contains only 0,1,2: (e.g.
+		[2,0,1,1,0,0,2,2]). How would you sort it? What is the complexity of the solution you provided?"
+	
+	"You provided with a string like “abcd123456”. You should increase every char in this string by 1, so “a” become “b”, “1” become “2”, 
+		so end result should be “bcde234567”"
+	Reverse a string
+	Find the second smallest element in unsorted array. You can’t sort it.
+	"Given an interger array of size n filled with zero and ones , 
+		Arrange all zeros on left and all one on right side.
+		int a[n] = {01010101}"
+	
+	
+	
+Networking	
+	Understanding of TCP/IP Fundamentals and associated protocols (HTTP, HTTPS, FTP, etc)
+	2. UDP Protocol: Concepts and differences from TCP/IP 
+	3. DNS: Functionality, Records, and Queries 
+	4. DHCP: Understanding of DHCP operations (DORA process) 
+	5. Familiarity with major Network Protocols such as ARP, ICMP, OSPF and BGP 
+	6. Network Topologies: Star, Bus, Ring, Mesh and Hybrid 
+	7. Network Infrastructure and Hardware: Switches, Routers, Hubs, Modems and Network Interfaces
+	8. Familiarity with VPN, SSL, TLS, and other encryption technologies 
+	9. Understanding of Network Security principles and technologies (Firewalls, IDS/IPS) 
+	10. Understanding of Subnetting and IP Addressing (IPv4 and IPv6) 
+	11. Troubleshooting skills for networking issues: Knowledge of tools like Ping, Traceroute, Netstat, nslookup, Wireshark, etc.
+	12. Familiarity with Network Monitoring Tools 13. Concepts of Load Balancing and Fail-over
+	14. Familiarity with Cloud Networking concepts (VPC, Subnets, etc.) 
+	15. Understanding of Network Automation and Orchestration technologies, such as Ansible, Puppet, etc. 
+	16. Knowledge of QoS (Quality of Service) concepts 
+	18. Basic knowledge of Software Defined Networking (SDN) 
+	19. Familiarity with Web Services/APIs and REST Protocol 
+	20. Experience with socket programming in Python 
+	21. Handling HTTP requests in Python using libraries such as requests, urllib, etc.
+	
+	
+	Difference between asynchronous and synchronous sockets
+	Traffic analyzer tools
+	what is https?
+	what is dhcp?
+	how dns works?
+	what is osi layer?
+	what is virtual memory?
+	You suspect that there is a memory leak in the application, how you will search it?
+	QA reported that the application has performance issues, how you will search them?
+	How to display a stack trace for the running process
+	
+	shallow copy and deep copy 
+	run time polymorphisam
+	smart pointers
+	maximum num using template 
+	what challenges you faced and resolved technically and non technically
+	what are the agile methodology roles an
+	memory leak and dangling pointers
+	memory layout
+		Std Id, Std Name
+		Dep Id, Dep Name
+		Sub Id, Sub Name
+ 
+Fix the table and give me a report for all the possibel records from Students, Dep Name, Sub Name
+
+          0   1   2   3   4   5
+ 
+0       0   0   1   0   0   0
+1       0   1   0   0   1   0
+2       0   1   0   0   0   0
+3       0   0   0   1   0   0
+ 
+getNeighborhs(1,1) ==> 1 
+
+Coding task - given a string 2(ab)3(de)5(f) -> output of the program should be "ababdededefffff"
+
+your strengths
+your weakness how did you overcome it
+what is the biggest problem(technical issue) faced in your experience. How did you resolve it. 
+What is the toughest problem you faced non technical .
+DB optimization / any optimization that you worked on. 
+CI/CD deployments.  
+
+Program for string comparision without loops and predefined methods
+Program for sington design pattern, use C++11 version and threadsafe and exception
+can we call virtual method from constructor
+Do we have static pure virtual methods
+diffrence between pointer and reference
+what is template meta program
+runtime polymorphisim 
+rvalue and lvalue
+what com
+how to load dynamic and static dll
+what is messageloop
+what is CObject
+what is send and post messsage
+what is CString, what will happen if buffer will not release
+which VS version will support c++11
+can we inherit struct from class
+can we declare pure virtual method in structure
+Diffrence between copy and move semantic
+Will structure allow pure virutal methods
+If you want to design tool like valgrind, what are the things keep in mind and how will you design the tool
+How to did you manage memory leaks? I have intentionally added memory leak and have more memory. what will happen?
+memory fragmentation
+what is record,tuples
+How do you avoid deadlocks in multi-threaded C# applications
+what is thread safe collections
+write left join using LINQ
+benefits of using entity framework over stored procedures calls
+rest api vs web api
+what is binary tree?
+traverse all left nodes in binary tree
+
+Gave Singleton program and asked to identify issues in it.
+How to make Singleton thread safe.
+How threads communicate each other.
+ Asked to write producer and consumer problem in c++
+Name few Unix system calls.
+How a system call works.
+How mmap works.
+Difference between malloc and New
+How malloc works.
+What is difference between vector and Map.
+How vector works internally.
+ What is the difference between Ordered and unordered map. Which is faster?
+What is volatile how it works internally.
+What is copy constructor 
+Gave a code and asked to identify issues and asked me to write copy constructor which should deep copy.
+What is caching in linux.
+Different Socket calls,
+How can we use the socket programming within the system.
+Different static analyzers used.
+How do you find out memory leaks in code. 
+
+Basic OOPS concepts - Encapsulation, Data hiding, Inheritance, Polymorphism.
+Class size when there is nothing in class, when the variable is declared and when virtual keyword used.
+smart pointers
+    unique_pointer and shared pointer , difference .
+    custom deleters in smart pointers and usage.
+ exception handling. 
+    basics - try, catch
+    stack unwinding 
+    exception hierarchy
+RTTI -  dynamic casting, static_casting, reinterpret_cast, const_cast.  deep understanding.
+STLS - maps,list,vector - basics.
+          std::less usage in printing map elements.
+         STL algorithms.
+Implicit constructors.
+lambda functions. -  deep knowledge .
+Thread synchronization basics.
+difference between Critical section and mutex.
+
+SQL JOIN queries.
+
+DNS Priority
+When to use TCP/UDP
+How to Debug Packets
+Previous Project Related lots of Question
+Scenario - If a host is connected to client and server but there is no connection between them how would host come to know whethere there is a connection between client and server or not
+
+SOLID Principles with project examples
+
+What you know about SOLID principles
+Could you go detailed explantion for Dependency injection
+how Dependency injection useful, any examples 
+Benefits of dependency injection while unit testing
+How to mock , unit testing
+Example for mock framework
+Design pattern examples
+observer pattern use cases
+CQRS patterns
+What is microservice
+characteristics of microservice
+multiple services with same database in Microservice architecture
+Problems with multiple services with same DB
+Single resposibility explain
+Api Gateway
+caching types
+CDN 
+type of testing your aware
+differents between unit/ integration testing
+TDD what , why important
+differents between unit/ integration testing
+sql/ no sql diffrnts
+Sql performance tuning steps
+are you awae about doker/kubernetics
+AzureDevOps activities 
+How debug / troubleshoot in production
+familiar with agil/scrum
+infrastructure side any involvement.... network/servers
+Do you know any language other than C#
+python/typescript
+what did you done with typescript
+
+"struct Node {
+    std::shared_ptr<Node> next;
+    std::shared_ptr<Node> previous;
+};
+ 
+void createSharedLinkedList() {
+    auto node1 = std::make_shared<Node>();
+    auto node2 = std::make_shared<Node>();
+    node1->next = node2;
+    node2->previous = node1;
+}"	What is the problem with the code . correct the code .	Cyclic dependency with shared_ptr need to use weak_ptr.
+Write the singleton class with thead safety.		
+How to restrict class inheritance.		
+ what are Unix GDB debugging commands		
+Custom deleter for shared pointer.		
+
+"Problem Statement: Given a set of strings, find the longest common prefix.
+Examples:
+
+Input: {“geeksforgeeks”, “geeks”, “geek”, “geezer”}
+Output: “gee”
+
+Input: {“apple”, “ape”, “april”}
+Output: “ap”"
+Program : Problem Statement -- AN INFINITE STRING with given string as repeating. Find the character that is repeated maximum times in given length n of the string
+string name= "I am in EPAM pune Now!"; write a code to generate a string where only the first letter within the given string is in uppercase Output:'I EPAM Now'
+palindrom code
+Reverse String code
+"You are given an array which contains only 0,1,2: (e.g.
+[2,0,1,1,0,0,2,2]). How would you sort it? What is the complexity of
+the solution you provided?"
+"You provided with a string like “absd123456”. You should increase
+every char in this string by 1, so “a” become “b”, “1” become “2”, so
+end result should be “bsde234567”"
+Reverse a string
+Find the second smallest element in unsorted array. You can’t sort it.
+"Given an interger array of size n filled with zero and ones , 
+Arrange all zeros on left and all one on right side.
+int a[n] = {01010101}"
+Check if the 2 strings are anagram and write unit test cases for them as well
+
+Get maximum numeric value from a given string (for example string str = "abc123212nb32uyt545hg34342434234gt")
+"Write a C# program to reverse the words from string.
+input: Welcome to CSharp interview
+output: interview CSharp to Welcome"
+"Write a C# program to get all possible substrings from a string input
+input: abcd
+output: a ab abc abcd b bc bcd c cd d"
+"//Input = [0, 0, 1, 0, 1, 0, 1, 1]
+//ouput = 3
+//Given a binary array, task is to sort this binary array using minimum swaps."
+"string str = ""This is my world""
+ 
+output
+""sihT si ym dlrow"""
+
+============
+ CLIENT INTERVIEW QUESTIONS 
+
+ Architecture 
+
+ Difference between monolith and microservice architecture. Also what are pros and cons of both architecture? 
+ What is API Gateway ? Why do we use it ? 
+ What is message queuing ? 
+
+ SQL 
+
+ What is index and why do we need it ? 
+ What is Transaction ? 
+ What is Normalisation ? 
+
+
+ Cloud 
+
+ What is resource manager ? 
+
+ c# 
+
+ what are SOLID principles? 
+ what is refactoring? 
+ What is sealed keyword used for? 
+ What is Dependency Injection? 
+ What do you understand with using async & await? 
+
+ Scenario based 
+
+ How will you deal with conflict of opinion in your team ? have you faced it before and if yes did it work? 
+ How do you guide your junior developer ? 
+ How will you deal with scenario when there is a performance drawback you have observed, and there is a project release soon? 
+ What will you check if you are doing code review for other developer? 
+ =========
+ 
+ C++
+How can we run the Linux application in Windows.
+Asked to write producer and consumer problem in c++
+TCP 3- way handshake process.
+What are the blocking calls.
+difference between TCP and UDP.
+
+Expalin the difference between C and C++ 
+How do we convince the client to use C++ instead of C
+Difference between vector and list
+what are all the STL aware and where can we use those STL's
+How can we migrate the 32-bit code into 64-bit, impacts and prerequisitions
+How can migrate linux code into windows and vice versa
+How to connect SQL server from C 
+
