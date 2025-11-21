@@ -3,6 +3,7 @@
 
 # ⭐ **Function Return Type Deduction in C++**
 
+*Reference and const do not preserve deduction with auto ,we need to declare it with auto.
 In modern C++ (C++14+), you can let the compiler **deduce a function’s return type** using `auto`:
 
 ```cpp
