@@ -324,6 +324,14 @@ Answer: Because static retains state.
 * Stored in **data/BSS segment**
 * Used for **singletons, counters, controlling visibility, shared config**
 * Common interview topic with linkage, lifetime, memory, OOP
+* Both global and static variables have static storage duration. 
+They live throughout the entire lifetime of the program.
+* Static variables are scoped to the function in which they are 
+declared and used. If you try to access them outside that 
+function, you’ll get a compiler error
+* Global variables are scoped to the global scope of the file 
+where they are declared. They are accessible and usable 
+through out the entire file
 
 ---
 
