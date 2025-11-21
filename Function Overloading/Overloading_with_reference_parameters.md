@@ -288,3 +288,68 @@ int main() {
 ```
 
 ---
+
+---
+
+# ✅ **A function is overloaded ONLY if its parameter types differ.**
+
+For **reference parameters**, the following *count as different types*:
+
+### ✔ `T&` (non-const reference)
+
+### ✔ `const T&` (const reference)
+
+### ✔ `T&&` (rvalue reference, C++11)
+
+These are **different types**, so they produce **valid overloads**.
+
+---
+
+# ✅ **These ARE valid overloads**
+
+```cpp
+void foo(int& x);         // #1 non-const lvalue ref
+void foo(const int& x);   // #2 const lvalue ref
+void foo(int&& x);        // #3 rvalue reference
+```
+
+### Why these are valid?
+
+* `int&` binds **only to modifiable lvalues**
+* `const int&` binds to **everything** (lvalues, const objects, temporaries)
+* `int&&` binds only to **rvalues / temporaries**
+
+Because each parameter type is different, **these are overloads**.
+
+---
+
+
+
+---
+
+# 📌 **Practical Answer to Your Question**
+
+### ✔ These reference-parameter functions **are overloaded**
+
+```cpp
+void say(std::string& name);           // non-const reference
+void say(const std::string& name);     // const reference
+void say(std::string&& name);          // rvalue reference
+```
+
+
+---
+
+# ⭐ Summary Table
+
+| Declaration                 | Overload? | Why                            |
+| --------------------------- | --------- | ------------------------------ |
+| `T&` vs `const T&`          | ✅ Yes     | different reference types      |
+| `T&` vs `T&&`               | ✅ Yes     | lvalue ref vs rvalue ref       |
+| `T&&` vs `const T&`         | ✅ Yes     | different reference categories |
+| `T` vs `const T` (by value) | ❌ No      | const dropped for callers      |
+| `T*` vs `T[]`               | ❌ No      | decay to pointer               |
+| `T[10]` vs `T*`             | ❌ No      | same function type             |
+
+---
+
