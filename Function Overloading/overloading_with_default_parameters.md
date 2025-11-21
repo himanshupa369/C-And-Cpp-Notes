@@ -26,7 +26,6 @@ void print_age(long int age){
 }
 ```
 
-**Function Overloading with Default Parameters in C++** —
 
 ---
 
