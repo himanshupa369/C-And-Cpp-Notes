@@ -9,10 +9,10 @@ C++20 introduced the ability to declare **template parameters directly inside a 
 
 This feature is used to:
 
-✔ Create generic lambdas
-✔ Control / constrain template types
-✔ Prevent mixed-type operations
-✔ Write cleaner generic code without a separate function template
+✔ Create generic lambdas <br>
+✔ Control / constrain template types<br>
+✔ Prevent mixed-type operations<br>
+✔ Write cleaner generic code without a separate function template<br>
 
 ---
 
