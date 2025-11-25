@@ -435,3 +435,4 @@ auto add(T a, U b) -> decltype(a + b) {  // definition
 
 ---
 
+<img width="1355" height="766" alt="image" src="https://github.com/user-attachments/assets/3747511d-2a96-4597-b72a-7cbae8f15ce3" />
