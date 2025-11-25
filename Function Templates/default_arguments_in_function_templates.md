@@ -160,3 +160,162 @@ Then:
 > Explicit template arguments override defaults. Easy to use and useful for generic utility functions such as `maximum()` or `minimum()`.
 
 ---
+
+---
+
+````md
+# 📘 Default Arguments in Function Templates (C++)
+
+Default arguments in **function templates** work almost the same way as in normal functions, but with
+important template-specific rules worth remembering.
+
+---
+
+# ⭐ 1. Basic Example
+
+```cpp
+#include <iostream>
+
+template <typename T>
+void greet(T name, int times = 1) {   // default argument
+    while(times--) {
+        std::cout << "Hello " << name << "\n";
+    }
+}
+
+int main() {
+    greet("Himanshu");        // times = 1 (default)
+    greet("Pathak", 3);       // times = 3
+}
+````
+
+✔ Default arguments work exactly as expected
+✔ The template parameter `T` does not need to have a default
+
+---
+
+# ⭐ 2. Default Template Arguments (Separate Concept)
+
+You can also provide default arguments *for the template parameters themselves*:
+
+```cpp
+template <typename T = int, typename P = double>
+auto add(T a, P b) {
+    return a + b;
+}
+
+int main() {
+    auto r1 = add(2, 3.5);     // T=int, P=double (implicit)
+    auto r2 = add<int>(7, 4);  // T=int, P=double (default P)
+}
+```
+
+### ✔ Default function argument
+
+→ belongs to function **parameter list**
+
+### ✔ Default template argument
+
+→ belongs to template **parameter list**
+
+These are independent features.
+
+---
+
+# ⭐ 3. Where Default Arguments Are Allowed
+
+### ✔ Allowed in function template *declaration*
+
+```cpp
+template <typename T>
+void foo(T a, int b = 100);
+```
+
+### ✔ Valid even with separate definition
+
+```cpp
+template <typename T>
+void foo(T a, int b);      // no default here!
+
+template <typename T>
+void foo(T a, int b /* no default */) {
+    std::cout << a << " " << b;
+}
+```
+
+### ❗ IMPORTANT RULE:
+
+> **Default arguments must appear only in the first declaration, never in the definition.**
+
+---
+
+# ⭐ 4. Cannot Put Default Argument in Multiple Declarations
+
+❌ This will not compile:
+
+```cpp
+template<typename T>
+void foo(T, int b = 10);
+
+template<typename T>
+void foo(T, int b = 20);    // ERROR – default given twice
+```
+
+---
+
+# ⭐ 5. Default Arguments + Explicit Template Arguments
+
+You can mix both:
+
+```cpp
+template <typename T = int>
+void show(T value = T{}) {
+    std::cout << value << "\n";
+}
+
+int main() {
+    show();          // T = int, value = 0
+    show<double>();  // T = double, value = 0.0
+    show(55);        // T deduced = int
+}
+```
+
+✔ Works fine
+✔ Deduction + defaults behave consistently
+
+---
+
+# ⭐ 6. When Template and Function Defaults Interact
+
+Example:
+
+```cpp
+template <typename T = double>
+T scale(T x = T{1}, double factor = 2.0) {
+    return x * factor;
+}
+
+int main() {
+    scale();            // T=double, x=1.0, factor=2.0
+    scale<int>();       // T=int, x=1, factor=2.0
+}
+```
+
+The rules:
+
+1. If template parameter default is used → affects the type of default function parameters
+2. Defaults are always applied **after template argument deduction** completes
+
+---
+
+# ⭐ 7. Summary (Perfect for Interviews & README)
+
+* C++ allows **default arguments** inside function templates.
+* They work the same as in normal functions.
+* **Default template parameters** and **default function parameters** are separate concepts.
+* Default arguments must appear **only once** (in the first declaration).
+* You *can* separate declaration & definition, but **default parameters must stay in the declaration**.
+* Defaults interact cleanly with template argument deduction.
+
+---
+
