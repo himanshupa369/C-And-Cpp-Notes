@@ -319,5 +319,4 @@ The rules:
 
 ---
 
-<img width="1355" height="766" alt="image" src="https://github.com/user-attachments/assets/e06ead35-2dcb-422a-88e2-162dae9daf9e" />
 
