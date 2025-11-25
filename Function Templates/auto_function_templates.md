@@ -5,6 +5,7 @@
 
 In modern C++ (C++14 and above), you can write **function templates without explicitly writing template parameters** by using `auto` in the function parameters or return type.
 <br>Supported in C++20. <br>
+<br>
 This concept is called:
 
 ### ✔ **Auto-deduced function templates**
