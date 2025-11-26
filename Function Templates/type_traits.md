@@ -114,10 +114,10 @@ func(5.5, 2.2); // ❌ Compile-time ERROR
 
 # Why Type Traits Matter?
 
-✔ Enable **safe**, **restricted**, and **predictable** templates
-✔ Prevent accidental wrong-type usage
-✔ Make libraries more robust and error-proof
-✔ Compile-time checking → Zero runtime cost
+✔ Enable **safe**, **restricted**, and **predictable** templates <br>
+✔ Prevent accidental wrong-type usage <br>
+✔ Make libraries more robust and error-proof <br>
+✔ Compile-time checking → Zero runtime cost <br>
 
 ---
 
