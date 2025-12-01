@@ -8,6 +8,8 @@
 A **Destructor** is a special member function of a class that is **automatically called when an object is destroyed**.
 Its purpose is to free resources such as **dynamic memory, file handles, network connections**, etc.
 
+<img width="1401" height="748" alt="Screenshot 2025-12-01 141243" src="https://github.com/user-attachments/assets/e3d4662c-98a0-41c1-b558-0531a8e6012a" />
+
 ---
 
 ### 🔥 **Syntax**
