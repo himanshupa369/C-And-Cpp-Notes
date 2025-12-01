@@ -116,10 +116,20 @@ int main(){
 
 ### 🎯 Important Points
 
-✔ A class groups **data + functions** together
-✔ Methods have access to private & public members
-✔ Objects store real values at runtime
-✔ Good practice → **keep data private, expose functions**
+✔ A class groups **data + functions** together <br>
+✔ Methods have access to private & public members <br>
+✔ Objects store real values at runtime <br>
+✔ Good practice → **keep data private, expose functions** <br>
+• Class member variables can either be raw stack variables or 
+pointers <br>
+ • Members can’t be references <br>
+ • Classes have functions (methods) that let them do things <br>
+ • Class methods have access to the member variables, regardless 
+of whether they are public or private <br>
+ • Private members of classes ( variables and functions) aren’t 
+accessible from the outside of the class definition
+<br>
+
 
 ---
 
