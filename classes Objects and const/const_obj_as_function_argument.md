@@ -5,11 +5,11 @@
 
 ## 📌 Header
 
-**Topic:** Const Objects as Function Parameters
-**Language:** C++
-**Concept Type:** Object Passing, Const Correctness
-**Required Knowledge:** References, Pointers, `const`, Copy vs Reference
-**Applies From:** C++98 → Present (C++11+ recommended)
+**Topic:** Const Objects as Function Parameters <br>
+**Language:** C++ <br>
+**Concept Type:** Object Passing, Const Correctness <br>
+**Required Knowledge:** References, Pointers, `const`, Copy vs Reference <br>
+**Applies From:** C++98 → Present (C++11+ recommended) <br>
 
 ---
 
@@ -17,10 +17,10 @@
 
 A **`const` object**:
 
-* ✅ Can be **copied**
-* ❌ Cannot be **modified**
-* ❌ Cannot be bound to a **non-const reference**
-* ❌ Cannot be passed to a **pointer-to-non-const**
+* ✅ Can be **copied** <br>
+* ❌ Cannot be **modified** <br>
+* ❌ Cannot be bound to a **non-const reference** <br>
+* ❌ Cannot be passed to a **pointer-to-non-const** <br>
 * ✅ Can be passed to:
 
   * `const` reference
