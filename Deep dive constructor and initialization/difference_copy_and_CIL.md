@@ -1,8 +1,9 @@
 <img width="1749" height="704" alt="Screenshot 2025-12-08 144855" src="https://github.com/user-attachments/assets/e7bc4d1e-bee9-4ad8-8cd0-5f9be8b501cb" />
 
+---
 > **Member-wise Copy Initialization vs Constructor Initializer Lists**
 
-Formatted exactly in the style you prefer for your C++ notes.
+
 
 ---
 
