@@ -208,3 +208,197 @@ Cylinder c2(5, 2);     // height = 2
 * ✅ Reduce constructor overloads
 
 ---
+
+# ✅ Default Constructors vs Default Arguments in Constructors (C++)
+
+## 🔹 Topic
+
+**Interaction between Default Constructor and Constructor with Default Parameters**
+
+---
+
+## 🔹 C++ Version
+
+* ✅ Supported since: **C++98**
+* ✅ Still valid in: **C++11–C++23**
+
+---
+
+## 🔹 Given Code (Your Example)
+
+```cpp
+#include <iostream>
+
+class Test {
+public:
+    Test(){
+        std::cout << "default constructor called" << std::endl;
+    }
+
+    // Works fine
+    Test(int x, int y = 10) {
+        std::cout << "default argument constructor called" << std::endl;
+        std::cout << "x = " << x << ", y = " << y << std::endl;
+    }
+};
+
+int main(){
+    Test a;        
+    std::cout << "build is done" << std::endl;
+    return 0;
+}
+```
+
+---
+
+## ✅ What Happens in This Program?
+
+```cpp
+Test a;
+```
+
+### 🔹 Which constructor is called?
+
+✅ **Output:**
+
+```
+default constructor called
+build is done
+```
+
+✔️ The **default constructor `Test()`** is called
+✔️ The constructor with default arguments is **NOT considered**, because:
+
+```cpp
+Test(int x, int y = 10)
+```
+
+❌ Still requires **at least 1 argument (`x`)**
+
+✅ So there is **NO ambiguity in this program**
+✅ Your code is **100% valid and correct**
+
+---
+
+## ❌ When Does the ERROR Occur?
+
+If you write this instead:
+
+```cpp
+class Test {
+public:
+    Test(){}
+
+    Test(int x = 5, int y = 10) {}
+};
+```
+
+And call:
+
+```cpp
+Test a;
+```
+
+### ❌ Compiler Error:
+
+```
+error: call of overloaded 'Test()' is ambiguous
+```
+
+### ❓ Why Ambiguous?
+
+Because now the compiler sees:
+
+| Constructor               | Can it be called with `Test a;`? |
+| ------------------------- | -------------------------------- |
+| `Test()`                  | ✅ YES                            |
+| `Test(int x=5, int y=10)` | ✅ YES                            |
+
+❌ Compiler cannot decide → **AMBIGUITY ERROR**
+
+---
+
+## ✅ Core Rule (Very Important)
+
+> ✅ If a constructor can be called with **zero arguments**, and another constructor also accepts **zero arguments due to defaults**, the program becomes **AMBIGUOUS**.
+
+---
+
+## ✅ Valid Default Argument Usage
+
+```cpp
+Test(int x, int y = 10);
+```
+
+✅ Works with:
+
+```cpp
+Test a(5);      // x=5, y=10
+Test b(5, 20); // x=5, y=20
+```
+
+❌ Does NOT allow:
+
+```cpp
+Test c; // because x has no default
+```
+
+---
+
+## ✅ Invalid Default Argument Pattern
+
+```cpp
+Test(int x = 5, int y); // ❌ ILLEGAL
+```
+
+✅ Rule:
+
+> Once a parameter has a default value, **all parameters to its right must also have defaults**.
+
+---
+
+## ✅ Pros
+
+✅ Reduces constructor overload count
+✅ Makes object creation flexible
+✅ Cleaner APIs
+✅ Widely used in STL and libraries
+
+---
+
+## ❌ Cons
+
+❌ Can cause **constructor ambiguity**
+❌ Harder to debug in large codebases
+❌ Dangerous when mixed with multiple overloads
+
+---
+
+## ✅ Real-World Use Cases
+
+* Graphics libraries (width default, height optional)
+* Networking sockets (timeout default)
+* STL-style APIs
+* Game engines (default physics values)
+* Database connection configs
+
+---
+
+## ✅ Final One-Line Summary (Interview Ready)
+
+> A constructor with default parameters can behave like multiple overloads, but if it overlaps with a default constructor, it causes ambiguity and results in a compile-time error.
+
+---
+
+## ✅ Your Code Verdict
+
+| Feature                      | Status                      |
+| ---------------------------- | --------------------------- |
+| Default constructor          | ✅ Valid                     |
+| Constructor with default arg | ✅ Valid                     |
+| Object creation (`Test a;`)  | ✅ Calls default constructor |
+| Ambiguity                    | ❌ NOT present               |
+| Design correctness           | ✅ Proper                    |
+
+---
+
