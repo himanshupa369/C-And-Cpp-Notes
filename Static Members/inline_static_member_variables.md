@@ -3,13 +3,13 @@
 
 # **Inline Static Member Variables (C++17 onwards)**
 
-**Topic Header:** Static Members in Classes
-**C++ Version:** Introduced in **C++17**
-**Included Headers:** None specifically required
-**Used in:** Classes, static counters, compile-time constants, configuration data
-**Why:** Avoid ODR violations, simplify initialization, header-only libraries
-**Pros/Cons:** Provided below
-**Real-World Use Cases:** Logging levels, global counters, configuration flags, header-only utilities
+**Topic Header:** Static Members in Classes <br>
+**C++ Version:** Introduced in **C++17** <br>
+**Included Headers:** None specifically required <br>
+**Used in:** Classes, static counters, compile-time constants, configuration data <br>
+**Why:** Avoid ODR violations, simplify initialization, header-only libraries <br>
+**Pros/Cons:** Provided below <br>
+**Real-World Use Cases:** Logging levels, global counters, configuration flags, header-only utilities <br>
 
 ---
 
