@@ -1,7 +1,7 @@
 
 ---
 
-# **C++ Static Constants **
+# C++ Static Constants
 
 ## **1. What Are Static Constants?**
 
