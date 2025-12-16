@@ -3,10 +3,10 @@
 
 # ⭐ **`consteval` in C++ (C++20)**
 
-**`consteval`** means:
-👉 **The function MUST execute at compile time**
-👉 It **cannot** run at runtime
-👉 If the call is not a compile-time constant → **COMPILER ERROR**
+**`consteval`** means: <br>
+👉 **The function MUST execute at compile time** <br>
+👉 It **cannot** run at runtime <br>
+👉 If the call is not a compile-time constant → **COMPILER ERROR** <br>
 
 It is stronger than `constexpr`.
 
