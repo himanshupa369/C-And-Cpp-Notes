@@ -1,6 +1,4 @@
 
----
-
 # Managing Arrays on Heap using `std::unique_ptr` (C++)
 
 ---
@@ -181,6 +179,7 @@ Then modify elements later using setters.
 > If you allocate an array on the heap, let a `unique_ptr<T[]>` own it — never a raw pointer.
 
 ---
+
 ```cpp
 #include <iostream>
 #include <memory>
