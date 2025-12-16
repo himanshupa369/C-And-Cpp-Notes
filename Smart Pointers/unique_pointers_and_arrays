@@ -1,0 +1,246 @@
+
+---
+
+# Managing Arrays on Heap using `std::unique_ptr` (C++)
+
+---
+
+## 1. Why use `unique_ptr` for arrays?
+
+* Raw dynamic arrays (`new[]`) require **manual `delete[]`**
+* Easy to forget → **memory leaks**
+* `std::unique_ptr` ensures:
+
+  * Automatic destruction
+  * Exception safety
+  * Clear ownership
+
+---
+
+## 2. Normal array (stack allocation) – recap
+
+```cpp
+Dog dogs[3] { Dog("Dog1"), Dog("Dog2"), Dog("Dog3") };
+
+for(int i = 0; i < 3; i++) {
+    dogs[i].print_info();
+}
+```
+
+* Allocated on stack
+* Constructors called at declaration
+* Destructors called automatically at scope end
+
+---
+
+## 3. Dynamic array using raw pointers (problematic)
+
+```cpp
+Dog* dogs = new Dog[3] {
+    Dog("Dog5"),
+    Dog("Dog6"),
+    Dog("Dog7")
+};
+
+for(int i = 0; i < 3; i++) {
+    dogs[i].print_info();
+}
+
+delete[] dogs; // MUST be done manually
+```
+
+### Problem:
+
+* Forget `delete[]` → memory leak
+* Hard to track ownership in large projects
+
+---
+
+## 4. `unique_ptr` managing array on heap (core concept)
+
+### Syntax (important)
+
+```cpp
+std::unique_ptr<Dog[]> dogs = std::unique_ptr<Dog[]>(new Dog[3]{
+    Dog("Dog1"),
+    Dog("Dog2"),
+    Dog("Dog3")
+});
+```
+
+Or (cleaner with `auto`):
+
+```cpp
+auto dogs = std::unique_ptr<Dog[]>(new Dog[3]{
+    Dog("Dog1"),
+    Dog("Dog2"),
+    Dog("Dog3")
+});
+```
+
+### Key points:
+
+* `unique_ptr<Dog[]>` → **array specialization**
+* Uses `delete[]` automatically
+* Elements accessed using `[]`
+
+```cpp
+for(int i = 0; i < 3; i++) {
+    dogs[i].print_info();
+}
+```
+
+* Destructors called **automatically** when `dogs` goes out of scope
+
+---
+
+## 5. Using `std::make_unique` with arrays (C++14+)
+
+```cpp
+auto dogs = std::make_unique<Dog[]>(3);
+```
+
+### What happens:
+
+* Allocates array of 3 `Dog`
+* Uses **default constructor** for each element
+
+If default constructor sets name `"Puppy"`:
+
+Output:
+
+```
+Puppy
+Puppy
+Puppy
+```
+
+---
+
+## 6. Important limitations of `make_unique` for arrays
+
+### ❌ Cannot initialize individual elements
+
+```cpp
+auto dogs = std::make_unique<Dog[]>(3);
+// dogs[0] = Dog("Bruno"); ❌ compile error
+```
+
+### ❌ Brace initialization NOT allowed
+
+```cpp
+auto dogs = std::make_unique<Dog[]>({
+    Dog("A"), Dog("B")
+}); // ❌ NOT supported
+```
+
+### ✔ Only this is allowed
+
+```cpp
+auto dogs = std::make_unique<Dog[]>(3);
+```
+
+Then modify elements later using setters.
+
+---
+
+## 7. Comparison summary
+
+| Method               | Initialization | Safety | Auto cleanup |
+| -------------------- | -------------- | ------ | ------------ |
+| Stack array          | Full           | Safe   | Yes          |
+| Raw `new[]`          | Full           | Unsafe | No           |
+| `unique_ptr + new[]` | Full           | Safe   | Yes          |
+| `make_unique<T[]>`   | Default only   | Safe   | Yes          |
+
+---
+
+## 8. When to use what?
+
+* **Need custom initialization** → `unique_ptr<T[]>(new T[n]{...})`
+* **Default objects are fine** → `make_unique<T[]>(n)`
+* **Avoid raw `new[]` always**
+
+---
+
+## 9. Key takeaways (exam / interview ready)
+
+* `std::unique_ptr<T[]>` is **specialized for arrays**
+* Automatically calls `delete[]`
+* `make_unique<T[]>`:
+
+  * Safer
+  * Cleaner
+  * BUT no element-wise initialization
+* Use `auto` to avoid verbose syntax
+
+---
+
+## 10. One-line rule to remember
+
+> If you allocate an array on the heap, let a `unique_ptr<T[]>` own it — never a raw pointer.
+
+---
+```cpp
+#include <iostream>
+#include <memory>
+#include "dog.h"
+
+
+
+int main(){
+
+     //Array allocated on the stack
+     /*
+     {
+        std::cout << "Working with dog array on the stack" << std::endl;
+        Dog dog_array[3] {Dog("Dog1"), Dog("Dog2") , Dog("Dog3")};
+        for( size_t i {0}; i < 3 ; ++i){
+            dog_array[i].print_info();
+        }
+
+     }
+    */
+
+     //Array allocated on the heap
+     /*
+     {
+        Dog * p_dog_array_raw = new Dog[3]{Dog("Dog4"), Dog("Dog5") , Dog("Dog6")};
+     
+        for( size_t i {0}; i < 3 ; ++i){
+            p_dog_array_raw[i].print_info();
+        }
+        
+        //If we don't delete explicitly like below. Have the line commented out, the memory
+        //for the array won't be released and we won't see the destructors for Dogs 4~6 called.
+        //If we delete explicitly, everything goes as expected and the destructors are called
+        //when we exit this scope.
+     
+        delete[] p_dog_array_raw;
+     }
+     */
+
+
+     //Array allocated on the heap with unique_ptr. Releases space for array automatically
+     {
+        //auto arr_ptr = std::unique_ptr<Dog[]> ( new Dog[3]{Dog("Dog7"), Dog("Dog8") , Dog("Dog9")});
+		
+        auto arr_ptr = std::make_unique<Dog[]>(3);// Works. Can't initialize individual elements
+        //auto arr_ptr = std::make_unique<Dog[]>(3) {Dog("Dog7"), Dog("Dog8") , Dog("Dog9")};//Compiler error
+        //auto arr_ptr = std::make_unique<Dog[]>{Dog("Dog7"), Dog("Dog8") , Dog("Dog9")};//Compiler error
+
+        for (size_t i{0} ; i < 3 ; ++i){
+            arr_ptr[i].print_info() ;
+        }
+         
+     }
+
+
+     std::cout << "Done!" << std::endl;
+	
+   
+    return 0;
+}
+```
+
+
