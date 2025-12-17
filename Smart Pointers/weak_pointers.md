@@ -1,7 +1,4 @@
-
-
-<a href="[https://stackoverflow.com](https://stackoverflow.com/questions/15648844/using-smart-pointers-for-class-members)">Document on Smart Pointer </a>
-
+https://stackoverflow.com/questions/15648844/using-smart-pointers-for-class-members
 ---
 
 # `std::weak_ptr` in C++ — Personal Notes
