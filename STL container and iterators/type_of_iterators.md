@@ -1,7 +1,7 @@
 Use these references : <br>
-https://www.cplusplus.com/reference/iterator/
-https://en.cppreference.com/w/cpp/iterator
-https://en.cppreference.com/w/cpp/iterator/contiguous_iterator
+https://www.cplusplus.com/reference/iterator/  <br>
+https://en.cppreference.com/w/cpp/iterator <br>
+https://en.cppreference.com/w/cpp/iterator/contiguous_iterator <br>
 
 <img width="1183" height="714" alt="Screenshot 2025-12-18 163441" src="https://github.com/user-attachments/assets/8003f206-84bb-4312-b833-6b01e2e524d7" />
 <br>
