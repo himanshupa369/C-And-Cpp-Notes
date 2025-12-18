@@ -1,4 +1,3 @@
----
 
 # 📘 `std::array` — Fixed-Size STL Container
 
