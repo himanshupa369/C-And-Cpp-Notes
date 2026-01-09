@@ -1,4 +1,4 @@
-# C-And-C-Notes
+# C-And-Cpp-Notes
 
 | Stage         | Tool Used    | Input File | Output File      | Description                   |
 | ------------- | ------------ | ---------- | ---------------- | ----------------------------- |
